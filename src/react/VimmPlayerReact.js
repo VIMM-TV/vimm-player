@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { VimmPlayer } from '../VimmPlayer.js';
 
 const VimmPlayerReact = forwardRef(({

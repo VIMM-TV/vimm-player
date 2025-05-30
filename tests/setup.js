@@ -1,28 +1,37 @@
-// Mock HLS.js for testing
-global.Hls = {
-  isSupported: jest.fn(() => true),
-  Events: {
-    MANIFEST_PARSED: 'hlsManifestParsed',
-    ERROR: 'hlsError'
-  }
-};
-
-// Mock DOM APIs that might not be available in test environment
-global.requestFullscreen = jest.fn();
-global.exitFullscreen = jest.fn();
-
-// Mock fetch for API calls
+// Mock fetch globally for tests
 global.fetch = jest.fn();
 
-// Setup DOM mocks
-Object.defineProperty(window, 'HTMLMediaElement', {
-  writable: true,
-  value: class MockHTMLMediaElement {
-    constructor() {
-      this.play = jest.fn(() => Promise.resolve());
-      this.pause = jest.fn();
-      this.addEventListener = jest.fn();
-      this.removeEventListener = jest.fn();
+// Mock HLS.js
+jest.mock('hls.js', () => {
+  return {
+    __esModule: true,
+    default: class MockHls {
+      static isSupported() {
+        return true;
+      }
+      
+      constructor() {
+        this.levels = [
+          { height: 720 },
+          { height: 480 },
+          { height: 360 }
+        ];
+        this.currentLevel = -1;
+      }
+      
+      loadSource() {}
+      attachMedia() {}
+      on() {}
+      destroy() {}
     }
-  }
+  };
 });
+
+// Mock DOM methods that might not be available in jsdom
+Object.defineProperty(document, 'fullscreenElement', {
+  value: null,
+  writable: true
+});
+
+Element.prototype.requestFullscreen = jest.fn();
+document.exitFullscreen = jest.fn();
