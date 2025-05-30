@@ -1,17 +1,53 @@
 {
   "name": "@vimm/player",
   "version": "0.1.0",
+  "description": "Standalone player for VIMM streams",
   "main": "dist/vimm-player.js",
   "module": "dist/vimm-player.esm.js",
+  "types": "dist/vimm-player.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "test": "jest",
+    "lint": "eslint src/",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "vimm",
+    "streaming",
+    "player",
+    "hls",
+    "video"
+  ],
+  "author": "VIMM-TV",
+  "license": "MIT",
   "dependencies": {
-    "hls.js": "^1.4.0"
+    "hls.js": "^1.5.0"
   },
   "devDependencies": {
-    "webpack": "^5.0.0",
-    "babel-loader": "^9.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "css-loader": "^6.0.0",
-    "mini-css-extract-plugin": "^2.0.0"
-  }
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "babel-loader": "^9.1.0",
+    "css-loader": "^6.8.0",
+    "eslint": "^8.50.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.7.0",
+    "mini-css-extract-plugin": "^2.7.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VIMM-TV/vimm-player.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VIMM-TV/vimm-player/issues"
+  },
+  "homepage": "https://github.com/VIMM-TV/vimm-player#readme"
 }

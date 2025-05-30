@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIMM Player Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        #player-container {
+            margin: 20px 0;
+        }
+        
+        .controls {
+            margin: 20px 0;
+        }
+        
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            background: #ff7c0a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>VIMM Player Example</h1>
+    
+    <div id="player-container"></div>
+    
+    <div class="controls">
+        <button onclick="player.play()">Play</button>
+        <button onclick="player.pause()">Pause</button>
+        <button onclick="player.setVolume(0.5)">Volume 50%</button>
+        <button onclick="player.setVolume(1)">Volume 100%</button>
+        <button onclick="player.toggleFullscreen()">Fullscreen</button>
+    </div>
+
+    <script src="../dist/vimm-player.js"></script>
+    <script>
+        // Initialize player
+        const player = new VimmPlayer({
+            container: '#player-container',
+            username: 'testuser', // Replace with actual username
+            coreServer: 'https://vimmcore.webhop.me',
+            options: {
+                autoplay: false,
+                theme: 'dark'
+            }
+        });
+
+        // Event listeners
+        player.on('ready', () => {
+            console.log('Player ready!');
+        });
+
+        player.on('play', () => {
+            console.log('Playback started');
+        });
+
+        player.on('pause', () => {
+            console.log('Playback paused');
+        });
+
+        player.on('error', (error) => {
+            console.error('Player error:', error);
+        });
+    </script>
+</body>
+</html>
