@@ -1,6 +1,6 @@
 {
   "name": "@vimm-tv/vimm-player",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Standalone player for VIMM streams",
   "main": "dist/vimm-player.js",
   "module": "dist/vimm-player.esm.js",
